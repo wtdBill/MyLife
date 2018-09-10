@@ -3,6 +3,7 @@ package com.example.ypp.mylife.application;
 import android.app.Application;
 
 import com.example.ypp.mylife.data.Constants;
+import com.lzy.okgo.OkGo;
 
 import cn.bmob.v3.Bmob;
 
@@ -20,6 +21,8 @@ public class LifeApplication extends Application {
         mLifeApplication=this;
 
         Bmob.initialize(getContext(),Constants.APPLICATION_ID);
+
+        OkGo.getInstance().init(this);
     }
 
 

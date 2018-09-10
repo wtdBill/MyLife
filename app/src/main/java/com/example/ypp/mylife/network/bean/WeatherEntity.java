@@ -3,19 +3,37 @@ package com.example.ypp.mylife.network.bean;
 import java.util.List;
 
 /**
- * Created by Crystal on 2018/9/2
+ * Created by ypp0623 on 2018/9/10.
  */
-public class WeatherInfo {
+
+public class WeatherEntity {
+
 
     /**
-     * data : {"yesterday":{"date":"26日星期五","high":"高温 31℃","fx":"南风","low":"低温 17℃","fl":"微风","type":"晴"},"city":"北京","aqi":"83","forecast":[{"date":"27日星期六","high":"高温 34℃","fengli":"微风级","low":"低温 21℃","fengxiang":"西南风","type":"晴"},{"date":"28日星期天","high":"高温 36℃","fengli":"3-4级","low":"低温 22℃","fengxiang":"北风","type":"多云"},{"date":"29日星期一","high":"高温 29℃","fengli":"微风级","low":"低温 18℃","fengxiang":"东风","type":"阴"},{"date":"30日星期二","high":"高温 30℃","fengli":"微风级","low":"低温 18℃","fengxiang":"南风","type":"阴"},{"date":"31日星期三","high":"高温 32℃","fengli":"3-4级","low":"低温 20℃","fengxiang":"南风","type":"多云"}],"ganmao":"各项气象条件适宜，发生感冒机率较低。但请避免长期处于空调房间中，以防感冒。","wendu":"27"}
-     * status : 200
-     * message : OK
+     * code : 200
+     * msg : 成功!
+     * data : {"yesterday":{"date":"9日星期日","high":"高温 20℃","fx":"无持续风向","low":"低温 16℃","fl":"<![CDATA[<3级]]>","type":"阵雨"},"city":"成都","aqi":"48","forecast":[{"date":"10日星期一","high":"高温 21℃","fengli":"<![CDATA[<3级]]>","low":"低温 16℃","fengxiang":"无持续风向","type":"小雨"},{"date":"11日星期二","high":"高温 21℃","fengli":"<![CDATA[<3级]]>","low":"低温 17℃","fengxiang":"无持续风向","type":"小雨"},{"date":"12日星期三","high":"高温 21℃","fengli":"<![CDATA[<3级]]>","low":"低温 17℃","fengxiang":"无持续风向","type":"小雨"},{"date":"13日星期四","high":"高温 23℃","fengli":"<![CDATA[<3级]]>","low":"低温 18℃","fengxiang":"无持续风向","type":"小雨"},{"date":"14日星期五","high":"高温 24℃","fengli":"<![CDATA[<3级]]>","low":"低温 19℃","fengxiang":"无持续风向","type":"阴"}],"ganmao":"天气较凉，较易发生感冒，请适当增加衣服。体质较弱的朋友尤其应该注意防护。","wendu":"22"}
      */
 
+    private int code;
+    private String msg;
     private DataBean data;
-    private int status;
-    private String message;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public DataBean getData() {
         return data;
@@ -25,30 +43,14 @@ public class WeatherInfo {
         this.data = data;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public static class DataBean {
         /**
-         * yesterday : {"date":"26日星期五","high":"高温 31℃","fx":"南风","low":"低温 17℃","fl":"微风","type":"晴"}
-         * city : 北京
-         * aqi : 83
-         * forecast : [{"date":"27日星期六","high":"高温 34℃","fengli":"微风级","low":"低温 21℃","fengxiang":"西南风","type":"晴"},{"date":"28日星期天","high":"高温 36℃","fengli":"3-4级","low":"低温 22℃","fengxiang":"北风","type":"多云"},{"date":"29日星期一","high":"高温 29℃","fengli":"微风级","low":"低温 18℃","fengxiang":"东风","type":"阴"},{"date":"30日星期二","high":"高温 30℃","fengli":"微风级","low":"低温 18℃","fengxiang":"南风","type":"阴"},{"date":"31日星期三","high":"高温 32℃","fengli":"3-4级","low":"低温 20℃","fengxiang":"南风","type":"多云"}]
-         * ganmao : 各项气象条件适宜，发生感冒机率较低。但请避免长期处于空调房间中，以防感冒。
-         * wendu : 27
+         * yesterday : {"date":"9日星期日","high":"高温 20℃","fx":"无持续风向","low":"低温 16℃","fl":"<![CDATA[<3级]]>","type":"阵雨"}
+         * city : 成都
+         * aqi : 48
+         * forecast : [{"date":"10日星期一","high":"高温 21℃","fengli":"<![CDATA[<3级]]>","low":"低温 16℃","fengxiang":"无持续风向","type":"小雨"},{"date":"11日星期二","high":"高温 21℃","fengli":"<![CDATA[<3级]]>","low":"低温 17℃","fengxiang":"无持续风向","type":"小雨"},{"date":"12日星期三","high":"高温 21℃","fengli":"<![CDATA[<3级]]>","low":"低温 17℃","fengxiang":"无持续风向","type":"小雨"},{"date":"13日星期四","high":"高温 23℃","fengli":"<![CDATA[<3级]]>","low":"低温 18℃","fengxiang":"无持续风向","type":"小雨"},{"date":"14日星期五","high":"高温 24℃","fengli":"<![CDATA[<3级]]>","low":"低温 19℃","fengxiang":"无持续风向","type":"阴"}]
+         * ganmao : 天气较凉，较易发生感冒，请适当增加衣服。体质较弱的朋友尤其应该注意防护。
+         * wendu : 22
          */
 
         private YesterdayBean yesterday;
@@ -108,12 +110,12 @@ public class WeatherInfo {
 
         public static class YesterdayBean {
             /**
-             * date : 26日星期五
-             * high : 高温 31℃
-             * fx : 南风
-             * low : 低温 17℃
-             * fl : 微风
-             * type : 晴
+             * date : 9日星期日
+             * high : 高温 20℃
+             * fx : 无持续风向
+             * low : 低温 16℃
+             * fl : <![CDATA[<3级]]>
+             * type : 阵雨
              */
 
             private String date;
@@ -174,12 +176,12 @@ public class WeatherInfo {
 
         public static class ForecastBean {
             /**
-             * date : 27日星期六
-             * high : 高温 34℃
-             * fengli : 微风级
-             * low : 低温 21℃
-             * fengxiang : 西南风
-             * type : 晴
+             * date : 10日星期一
+             * high : 高温 21℃
+             * fengli : <![CDATA[<3级]]>
+             * low : 低温 16℃
+             * fengxiang : 无持续风向
+             * type : 小雨
              */
 
             private String date;

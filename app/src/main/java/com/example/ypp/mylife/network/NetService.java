@@ -1,8 +1,5 @@
 package com.example.ypp.mylife.network;
 
-import com.example.ypp.mylife.data.Constants;
-import com.example.ypp.mylife.network.bean.WeatherInfo;
-
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

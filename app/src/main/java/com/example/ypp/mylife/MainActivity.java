@@ -5,17 +5,12 @@ import android.os.Bundle;
 
 import com.example.ypp.mylife.Utils.Logger;
 import com.example.ypp.mylife.data.Constants;
-import com.example.ypp.mylife.data.DataListener;
 import com.example.ypp.mylife.data.UserInfo;
-import com.example.ypp.mylife.network.NetService;
-import com.example.ypp.mylife.network.RetrofitHelper;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import com.example.ypp.mylife.network.bean.XIaoshuo;
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,33 +21,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         UserInfo userInfo=new UserInfo("","","","","",1,"");
 //        userInfo.save(new DataListener());
-        userInfo.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-                Logger.d("saasasa");
-            }
-        });
+//        userInfo.save(new SaveListener<String>() {
+//            @Override
+//            public void done(String s, BmobException e) {
+//                Logger.d("saasasa");
+//            }
+//        });
         getWeatherInfo();
     }
 
     private void getWeatherInfo(){
-        RetrofitHelper.getStringApi(NetService.class).getWeatherInfo(Constants.INTERFACE_WEATHER,"南京市")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
+        OkGo.<String>post(Constants.xiaoshuo)
+                .tag(this)
+                .execute(new StringCallback() {
                     @Override
-                    public void onCompleted() {
-
+                    public void onSuccess(Response<String> response) {
+                        Logger.e(response.body());
+                        Gson gson=new Gson();
+                        XIaoshuo xIaoshuo=gson.fromJson(response.body(),XIaoshuo.class);
                     }
+                });
 
+        OkGo.<String>post(Constants.INTERFACE_WEATHER)
+                .tag(this)
+                .params("city","南京")
+                .execute(new StringCallback() {
                     @Override
-                    public void onError(Throwable e) {
-                        Logger.e(e.toString());
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        Logger.e(s);
+                    public void onSuccess(Response<String> response) {
+                        Logger.e(response.body());
                     }
                 });
     }
